@@ -18,6 +18,7 @@ env:
 #  REPO_URL: https://github.com/openwrt/openwrt
 #  REPO_URL: https://github.com/Lienol/openwrt
   REPO_BRANCH: master
+  SSH_ACTIONS: false
   
 jobs:
   build:
@@ -63,6 +64,7 @@ jobs:
 
     - name: SSH connection
       uses: mxschmitt/action-tmate@v2
+      if: env.SSH_ACTIONS == 'true'
 
     - name: Zip files
       run: |
