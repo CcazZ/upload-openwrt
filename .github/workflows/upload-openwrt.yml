@@ -45,12 +45,12 @@ jobs:
       run: |
         cd openwrt/package
         git clone https://github.com/destan19/OpenAppFilter
+        git clone https://github.com/fangli/openwrt-vm-tools
         cd lean/
         git clone https://github.com/sypopo/luci-theme-atmaterial
         git clone https://github.com/rufengsuixing/luci-app-adguardhome
         git clone https://github.com/pymumu/luci-app-smartdns
         git clone https://github.com/hong0980/luci-app-passwall
-        git clone https://github.com/fangli/openwrt-vm-tools
 
     - name: Zip files
       run: |
