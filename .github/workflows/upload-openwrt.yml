@@ -32,7 +32,16 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo -E apt-get -qq install zip
+        sudo -E apt -qq update
+        sudo -E apt -qq upgrade
+        sudo -E apt -qq install zip
+        sudo apt -qq install asciidoc bash binutils bzip2 flex git-core g++ gcc
+        sudo apt -qq install util-linux gawk help2man intltool libelf-dev zlib1g-dev
+        sudo apt -qq install make libncurses5-dev libssl-dev patch perl-modules
+        sudo apt -qq install python2.7-dev unzip wget gettext xsltproc zlib1g-dev
+        sudo apt -qq install libxml-parser-perl libusb-dev bin86 bcc sharutils g++-multilib
+        sudo -E apt -qq autoremove --purge
+        sudo -E apt-get -qq clean
 
     - name: Clone openwrt source code
       run: |
