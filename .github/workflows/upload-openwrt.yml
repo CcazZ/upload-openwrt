@@ -40,7 +40,7 @@ jobs:
 
     - name: Zip files
       run: |
-        zip -r openwrt.tar.gz openwrt
+        zip -r openwrt.zip openwrt
 
     - name: Upload openwrt.zip to cowtransfer
       run: |
