@@ -42,7 +42,7 @@ jobs:
       run: |
         zip -r openwrt.tar.gz openwrt
 
-      - name: Upload openwrt.zip to cowtransfer
+    - name: Upload openwrt.zip to cowtransfer
       run: |
         curl -sL https://git.io/cowtransfer | sh
         ./cowtransfer-uploader -p 8 openwrt.zip
