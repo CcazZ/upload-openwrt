@@ -1,0 +1,48 @@
+#===================================================
+# URL: https://github.com/origin-one/upload-openwrt/
+# Description: Upload latest openWrt to cowtransfer
+#              using GitHub Actions
+# Lisence: MIT
+# Author: CC
+#===================================================
+name: Upload latest OpenWrt to cowtransfer
+
+on:
+#  schedule:
+#    - cron: * * * 1 *
+  watch:
+    types: started
+
+env:
+  REPO_URL: https://github.com/coolsnowwolf/lede
+#  REPO_URL: https://github.com/openwrt/openwrt
+#  REPO_URL: https://github.com/Lienol/openwrt
+  REPO_BRANCH: master
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo -E apt-get -qq install zip
+		
+    - name: Clone source code
+      run: |
+        git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+	  
+    - name: Zip files
+      run: |
+        zip -r openwrt.tar.gz openwrt
+		
+      - name: Upload openwrt.zip to cowtransfer
+      run: |
+        curl -sL https://git.io/cowtransfer | sh
+        ./cowtransfer-uploader -p 8 openwrt.zip
