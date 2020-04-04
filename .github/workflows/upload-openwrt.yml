@@ -62,7 +62,7 @@ jobs:
         git clone https://github.com/hong0980/luci-app-passwall
 
     - name: SSH connection
-      uses: mxschmitt/action-tmate@master
+      uses: mxschmitt/action-tmate@v2
 
     - name: Zip files
       run: |
