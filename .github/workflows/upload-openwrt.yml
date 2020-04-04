@@ -32,16 +32,16 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo -E apt -qq update
-        sudo -E apt -qq upgrade
-        sudo -E apt -qq install zip
-        sudo apt -qq install asciidoc bash binutils bzip2 flex git-core g++ gcc
-        sudo apt -qq install util-linux gawk help2man intltool libelf-dev zlib1g-dev
-        sudo apt -qq install make libncurses5-dev libssl-dev patch perl-modules
-        sudo apt -qq install python2.7-dev unzip wget gettext xsltproc zlib1g-dev
-        sudo apt -qq install libxml-parser-perl libusb-dev bin86 bcc sharutils g++-multilib
-        sudo -E apt -qq autoremove --purge
-        sudo -E apt-get -qq clean
+        sudo -E apt -y update
+        sudo -E apt -y upgrade
+        sudo -E apt -y install zip
+        sudo -E apt -y install asciidoc bash binutils bzip2 flex git-core g++ gcc
+        sudo -E apt -y install util-linux gawk help2man intltool libelf-dev zlib1g-dev
+        sudo -E apt -y install make libncurses5-dev libssl-dev patch perl-modules
+        sudo -E apt -y install python2.7-dev unzip wget gettext xsltproc zlib1g-dev
+        sudo -E apt -y install libxml-parser-perl libusb-dev bin86 bcc sharutils g++-multilib
+        sudo -E apt -y autoremove --purge
+        sudo -E apt -y clean
 
     - name: Clone openwrt source code
       run: |
@@ -67,8 +67,10 @@ jobs:
     - name: Zip files
       run: |
         zip -r openwrt.zip openwrt
+        tar -zcvf openwrt.tar.gz openwrt
 
     - name: Upload openwrt.zip to cowtransfer
       run: |
         curl -sL https://git.io/cowtransfer | sh
         ./cowtransfer-uploader -p 8 openwrt.zip
+        ./cowtransfer-uploader -p 8 openwrt.tar.gz
