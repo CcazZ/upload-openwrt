@@ -53,10 +53,9 @@ jobs:
         ./scripts/feeds install -a
 
     - name: Custom feeds
-      run: |
       if: env.CUSTOM_FEEDS == 'true'
-        cd openwrt
-        cd feeds/packages/net/
+      run: |
+        cd openwrt/feeds/packages/net/
         rm -rf smartdns
         wget https://github.com/pymumu/openwrt-smartdns/archive/master.zip -O smartdns.zip
         unzip smartdns.zip
