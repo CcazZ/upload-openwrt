@@ -47,9 +47,24 @@ jobs:
     - name: Clone openwrt source code
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-        cd openwrt 
+
+    - name: Update feeds
+      run: |
+        cd openwrt
         ./scripts/feeds update -a
-        ./scripts/feeds update -a
+
+    - name: Custom feeds
+      run: |
+        cd openwrt
+        mkdir -p feeds/packages/net/smartdns/
+        cd feeds/packages/net/smartdns/
+        rm -rf ./*
+        wget https://github.com/pymumu/openwrt-smartdns/archive/master.zip -O smartdns.zip
+        unzip smartdns.zip
+        cd ../../../../
+        cd feeds/luci/applications//
+        rm -rf luci-app-smartdns
+        git clone https://github.com/pymumu/luci-app-smartdns
         
     - name: Clone luci source code
       run: |
@@ -62,17 +77,20 @@ jobs:
         git clone -b lede https://github.com/pymumu/luci-app-smartdns
         git clone https://github.com/hong0980/luci-app-passwall
 
+    - name: Install feeds
+      run: |
+        cd openwrt
+        ./scripts/feeds install -a
+
     - name: SSH connection
       uses: mxschmitt/action-tmate@v2
       if: env.SSH_ACTIONS == 'true'
 
-    - name: Zip files
+    - name: Tar files
       run: |
-        zip -r openwrt.zip openwrt
         tar -zcvf openwrt.tar.gz openwrt
 
     - name: Upload openwrt.zip to cowtransfer
       run: |
         curl -sL https://git.io/cowtransfer | sh
-        ./cowtransfer-uploader -p 8 openwrt.zip
         ./cowtransfer-uploader -p 8 openwrt.tar.gz
