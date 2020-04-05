@@ -88,9 +88,9 @@ jobs:
 
     - name: Tar files
       run: |
-        tar -zcvf openwrt.tar.gz openwrt
+        tar -zcvf openwrt_$(date +%Y-%m-%d_%H%M%S).tar.gz openwrt
 
     - name: Upload openwrt.zip to cowtransfer
       run: |
         curl -sL https://git.io/cowtransfer | sh
-        ./cowtransfer-uploader -p 8 openwrt.tar.gz
+        ./cowtransfer-uploader -p 8 openwrt*.tar.gz
