@@ -56,13 +56,12 @@ jobs:
     - name: Custom feeds
       run: |
         cd openwrt
-        mkdir -p feeds/packages/net/smartdns/
-        cd feeds/packages/net/smartdns/
-        rm -rf ./*
+        cd feeds/packages/net/
+        rm -rf smartdns
         wget https://github.com/pymumu/openwrt-smartdns/archive/master.zip -O smartdns.zip
         unzip smartdns.zip
-        cd ../../../../
-        cd feeds/luci/applications//
+        mv openwrt-smartdns-master smartdns
+        cd ../../luci/applications/
         rm -rf luci-app-smartdns
         git clone https://github.com/pymumu/luci-app-smartdns
         
