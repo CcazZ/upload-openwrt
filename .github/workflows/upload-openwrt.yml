@@ -8,8 +8,13 @@
 name: Upload latest OpenWrt to cowtransfer
 
 on:
-#  schedule:
-#    - cron: * * * 1 *
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/upload-openwrt.yml'
+  schedule:
+    - cron: 0 10 * * *
   watch:
     types: started
 
