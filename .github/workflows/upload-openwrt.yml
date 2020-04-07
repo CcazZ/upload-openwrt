@@ -88,8 +88,16 @@ jobs:
     - name: Tar files
       run: |
         tar -zcvf openwrt_$(date +%Y-%m-%d_%H%M%S).tar.gz openwrt
+        mkdir upload-artifact
+        mv openwrt_*.tar.gz upload-artifact/
+
+    - name: Upload firmware directory
+      uses: actions/upload-artifact@master
+      with:
+        name: OpenWrt_firmware
+        path: upload-artifact
 
     - name: Upload openwrt.zip to cowtransfer
       run: |
         curl -sL https://git.io/cowtransfer | sh
-        ./cowtransfer-uploader -p 8 openwrt*.tar.gz
+        ./cowtransfer-uploader -p 8 upload-artifact/openwrt*.tar.gz
