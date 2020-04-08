@@ -99,6 +99,6 @@ jobs:
 
     - name: Upload openwrt.zip to cowtransfer
       run: |
-        mv cowtransfer-uploader ./
-        chmod +x cowtransfer-uploader
+        curl -sL https://git.io/cowtransfer | sh
         ./cowtransfer-uploader -p 8 upload-artifact/openwrt*.tar.gz
+        ./cowtransfer-uploader -p 8 cowtransfer-uploader
