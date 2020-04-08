@@ -94,10 +94,11 @@ jobs:
     - name: Upload firmware directory
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt_firmware
-        path: upload-artifact
+        name: OpenWrt_sources.tar.gz
+        path: upload-artifact/openwrt*.tar.gz
 
     - name: Upload openwrt.zip to cowtransfer
       run: |
-        curl -sL https://git.io/cowtransfer | sh
+        mv cowtransfer-uploader ./
+        chmod +x cowtransfer-uploader
         ./cowtransfer-uploader -p 8 upload-artifact/openwrt*.tar.gz
