@@ -20,9 +20,9 @@ on:
 
 env:
 #  REPO_URL: https://github.com/coolsnowwolf/lede
-#  REPO_URL: https://github.com/openwrt/openwrt
+  REPO_URL: https://github.com/openwrt/openwrt
   REPO_URL: https://github.com/Lienol/openwrt
-  REPO_BRANCH: dev-19.07
+  REPO_BRANCH: master
   SSH_ACTIONS: false
   CUSTOM_FEEDS: false
   
@@ -71,12 +71,12 @@ jobs:
         
     - name: Clone luci source code
       run: |
-        cd openwrt/package
+        #cd openwrt/package
         #git clone https://github.com/destan19/OpenAppFilter
-        git clone https://github.com/fangli/openwrt-vm-tools
-        cd lean/
-        git clone https://github.com/rufengsuixing/luci-app-adguardhome
-        git clone https://github.com/kuoruan/luci-app-v2ray
+        #git clone https://github.com/fangli/openwrt-vm-tools
+        #cd lean/
+        #git clone https://github.com/rufengsuixing/luci-app-adguardhome
+        #git clone https://github.com/kuoruan/luci-app-v2ray
 
     - name: SSH connection
       uses: mxschmitt/action-tmate@v2
