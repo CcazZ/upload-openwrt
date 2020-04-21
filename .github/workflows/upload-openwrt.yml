@@ -10,7 +10,7 @@ name: Upload latest OpenWrt to cowtransfer
 on:
   push:
     branches:
-      - master
+      - openwrt
     paths:
       - '.github/workflows/upload-openwrt.yml'
   schedule:
