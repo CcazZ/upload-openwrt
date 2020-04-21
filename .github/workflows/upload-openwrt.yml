@@ -19,10 +19,10 @@ on:
     types: started
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+#  REPO_URL: https://github.com/coolsnowwolf/lede
 #  REPO_URL: https://github.com/openwrt/openwrt
-#  REPO_URL: https://github.com/Lienol/openwrt
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/Lienol/openwrt
+  REPO_BRANCH: dev-19.07
   SSH_ACTIONS: false
   CUSTOM_FEEDS: false
   
